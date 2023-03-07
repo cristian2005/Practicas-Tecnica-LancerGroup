@@ -55,7 +55,7 @@ Constará de un formulario que pide correo y contraseña, la información se env
 ### Request y respuesta del login
 ![image](https://user-images.githubusercontent.com/36666070/223439889-d04a9681-4381-4721-94c7-13ce5377e3c6.png)
 
-Nota: Si recibes un código 3 es porque el usuario no existe en la db.
+Nota: Si recibes un código 2 es porque la clave es incorrecta y 3 es porque el usuario no existe en la db.
 
 ### Paso 4: Perfil del usuario
 Aquí se debe de mostrar la información del usuario que se tiene guardada, el diseño de la interfaz está a su discrecion.
