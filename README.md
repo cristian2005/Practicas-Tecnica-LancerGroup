@@ -40,18 +40,26 @@ junto a la demas data del formulario
 ### Paso 2: Procesamiento de la informacion de registro
 Al tener toda la data de registro, la informacion se enviara al endpoint https://api.lancergroup.org/likeride/api/Auth/Register para completar el registro, una vez recibida una respuesta satisfactoria se procedera a guardar la respuesta del servidor de manera local utilizando la libreria de [Ionic Storage](https://github.com/ionic-team/ionic-storage) y se procedera a la pagina donde se muestra la informacion basica del perfil creado.
 
-### Datos del usuario:
+### Datos del usuario a registrar:
 ![image](https://user-images.githubusercontent.com/36666070/223437611-ba14fc07-5876-4f51-8ad9-1f9caa9e0b1f.png)
 
+### Respuesta
+![image](https://user-images.githubusercontent.com/36666070/223438595-460c40ca-aa9a-4496-9063-5e073e1675c8.png)
 
-Nota: la ubicacion no se enviara a la API, sino que se guardara de forma local aparte de los datos del usuario
+
+Nota: Si en la respuesta recibes un código 2 es porque el usuario ya existe en la bd y si recibe un error de php revise el request está poniendo un campo mal. La ubicación no se enviara a la API, sino que se guardara de forma local aparte de los datos del usuario.
 
 ### Paso 3: Login
-Constara de un formulario que pide correo y contraseña, la informacion se enviara al endpoint https://api.lancergroup.org/likeride/api/Auth/Get_ToketLogin y al igual que en registro se debe guardar la respuesta del servidor en el almacenamiento local y proceder a la pagina de detalles del usuario.
+Constará de un formulario que pide correo y contraseña, la información se enviara al endpoint https://api.lancergroup.org/likeride/api/Auth/Get_ToketLogin y al igual que en registro se debe guardar la respuesta del servidor en el almacenamiento local y proceder a la página de detalles del usuario.
+
+### Request y respuesta del login
+![image](https://user-images.githubusercontent.com/36666070/223439889-d04a9681-4381-4721-94c7-13ce5377e3c6.png)
+
+Nota: Si recibes un código 3 es porque el usuario no existe en la db.
 
 ### Paso 4: Perfil del usuario
-Aqui se debe de mostrar la informacion del usuario que se tiene guardada, el diseño de la interfaz esta a su discrecion.
-Ademas se debe incluir un boton de cerrar sesion el cual limpiara la data guardada localmente y te devolvera al login
+Aquí se debe de mostrar la información del usuario que se tiene guardada, el diseño de la interfaz está a su discrecion.
+Además, se debe incluir un boton de cerrar sesion el cual limpiara la data guardada localmente y te devolvera al login
 
 ### Paso 5: Mejoras
 Una ves terminada la funcionalidad principal, procederan a implementar estas mejoras:
