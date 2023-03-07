@@ -40,6 +40,10 @@ junto a la demas data del formulario
 ### Paso 2: Procesamiento de la informacion de registro
 Al tener toda la data de registro, la informacion se enviara al endpoint https://api.lancergroup.org/likeride/api/Auth/Register para completar el registro, una vez recibida una respuesta satisfactoria se procedera a guardar la respuesta del servidor de manera local utilizando la libreria de [Ionic Storage](https://github.com/ionic-team/ionic-storage) y se procedera a la pagina donde se muestra la informacion basica del perfil creado.
 
+### Datos del usuario:
+![image](https://user-images.githubusercontent.com/36666070/223437611-ba14fc07-5876-4f51-8ad9-1f9caa9e0b1f.png)
+
+
 Nota: la ubicacion no se enviara a la API, sino que se guardara de forma local aparte de los datos del usuario
 
 ### Paso 3: Login
