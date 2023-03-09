@@ -63,6 +63,8 @@ Nota: Si recibes un código 2 es porque la clave es incorrecta y 3 es porque el 
 Aquí se debe de mostrar la información del usuario que se tiene guardada, el diseño de la interfaz está a su discrecion.
 Además, se debe incluir un boton de cerrar sesion el cual limpiara la data guardada localmente y te devolvera al login
 
+Para la iamgen de perfil, los archivos estan alojados en: https://api.lancergroup.org/likeride/imagenes/avatar/x1/
+
 ### Paso 5: Mejoras
 Una ves terminada la funcionalidad principal, procederan a implementar estas mejoras:
 
