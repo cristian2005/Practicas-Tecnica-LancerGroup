@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;    
+}
+
+.form {
+    padding-top: 60px;
+}
+    
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 38px;
+    color: #252eff;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+p {
+    width: 300px;
+    margin: auto;
+}
+
+ion-avatar, ion-icon {
+    width: 65px;
+    height: 180px;
+    color: rgb(0, 145, 255);
+    margin: auto;
+}

@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-title>Obtener ubicación del usuario</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/register"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <ion-avatar>
+        <ion-icon name="location-outline"></ion-icon>
+    </ion-avatar>
+    <p class="ion-text-center">Presione el siguiente botón para obtener su ubicación y
+        seguir con el siguiente paso de registro.
+    </p>
+    <ion-button expand="block" (click)="getCurrentLocation()">Obtener ubicación</ion-button>
+    <div id="botonsig"></div>
+
+</ion-content>

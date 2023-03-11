@@ -1,0 +1,42 @@
+.container-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.userPic, .userPic ion-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 150px;
+    height: 150px;
+}
+
+.uerFinger, .userFinger ion-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: auto;
+    color: rgb(0, 145, 255);
+}
+
+.userFinger ion-avatar ion-icon {
+    width: 27px;
+    height: 27px;
+}
+
+
+.icons-texts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.icons-texts ion-icon {
+    width: 25px;
+    height: 25px;
+}
