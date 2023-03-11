@@ -27,58 +27,13 @@ export class LoginComponent {
     });
 
   }
-
-
-  async conseguir(){
-    try {
-      const credentials = await NativeBiometric.getCredentials({
-        server: "HOLA",
-      });
-      alert(JSON.stringify(credentials))
-    } catch (error) {
-      alert(JSON.stringify(error))
-    }
-    
-  }
-
-
-  async setear(){
-    try {
-      NativeBiometric.setCredentials({
-        username: "wilson",
-        password: "1234",
-        server: "HOLA",
-      }).then();
-    } catch (error) {
-      alert(JSON.stringify(error))
-    }
-
-  }
-
-  async validar(){
-
-    try {
-      const verified = await NativeBiometric.verifyIdentity({
-        reason: "Para iniciar sesión más fácil",
-        title: "Obtener datos biometricos.",
-      })
-        .then(() => true)
-        .catch(() => false);
-        alert(verified)
-    } catch (error) {
-      alert(JSON.stringify(error))
-      
-    }
-    
-  }
-
   
 
-  async addBiometric(params: any) {
+  async addBiometric(params: any = null) {
 
     NativeBiometric.setCredentials({
-      username: params?.userEmail,
-      password: params?.userPassword,
+      username: "endomamoru@inazumaeleven.com",
+      password: "wilson0102",
       server: "https://api.lancergroup.org",
     }).then();
   }
@@ -91,24 +46,22 @@ export class LoginComponent {
     const isFaceID = result.biometryType == BiometryType.FACE_ID;
 
     const verified = await NativeBiometric.verifyIdentity({
-      reason: "Para iniciar sesión más fácil",
-      title: "Obtener datos biometricos.",
+      title: "Obtener datos biometricos para iniciar sesión más fácil"
     })
       .then(() => true)
       .catch(() => false);
-    alert(verified)
     if (!verified) return;
 
     const credentials = await NativeBiometric.getCredentials({
       server: "https://api.lancergroup.org",
     });
     alert(JSON.stringify(credentials))
-    this.onLogin({userEmail: credentials.username, userPassword: credentials.password, valid:true})
+    alert("funciona")
+    this.onLogin(credentials)
   }
 
   async onLogin(params: any = null) {
     let params2 =  params ?? this.formLogin.value
-    alert(params2)
     if (this.formLogin.valid || params2?.valid) {
       this.authenticationService.login(params2).subscribe({
         next: this.response.bind(this, params2),

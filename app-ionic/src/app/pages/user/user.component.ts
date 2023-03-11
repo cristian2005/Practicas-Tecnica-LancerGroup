@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { Router } from '@angular/router';
 import { NativeBiometric } from 'capacitor-native-biometric';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +13,8 @@ export class UserComponent implements OnInit {
   user: any;
   image: string = "https://api.lancergroup.org/likeride/imagenes/avatar/x1/"
 
-  constructor(private storageService: StorageService, private router: Router) {
+  constructor(private storageService: StorageService, private router: Router,
+    private alertController: AlertController) {
 
   }
 
@@ -23,8 +25,27 @@ export class UserComponent implements OnInit {
 
     const credentials = await this.getBiometric();
     if(!credentials.username){
-      this.addBiometric()
+      const alert = await this.alertController.create({
+        header: 'Añadiendo datos biometricos...',
+        message: 'Añadimos sus datos biometricos a esta cuenta, para iniciar sesión más ráido.',
+        buttons: ['Aceptar']
+      })
+      await alert.present();
+      this.addBiometric(credentials)
+      return;
+    } else {
+      const alert = await this.alertController.create({
+        header: 'BORRANDO datos biometricos...',
+        message: 'BORRAMOS sus datos biometricos.',
+        buttons: ['Aceptar']
+      })
+      await alert.present();
+      NativeBiometric.deleteCredentials({
+        server: "www.example.com",
+      }).then();
+      return;
     }
+
   }
 
     async getBiometric() {
@@ -46,5 +67,7 @@ export class UserComponent implements OnInit {
     this.storageService.remove("session");
     this.router.navigate(["/login"])
   }
+
+
 
 }
