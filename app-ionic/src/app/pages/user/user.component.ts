@@ -19,49 +19,86 @@ export class UserComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let user = await this.storageService.get("session")
-    this.user = user.User;
-    this.user.image = this.image + this.user.profilePic;
 
-    const credentials = await this.getBiometric();
-    if(!credentials.username){
-      const alert = await this.alertController.create({
-        header: 'Añadiendo datos biometricos...',
+    await this.getBiometric();
+
+  }
+
+  async addBiometric() {
+    const user = await this.storageService.get("credentials")
+    NativeBiometric.setCredentials({
+      username: user.userEmail,
+      password: user.userPassword,
+      server: "https://api.lancergroup.org",
+    }).then();
+  }
+
+  async getBiometric() {
+    try {
+      let credentials = await NativeBiometric.getCredentials({
+        server: "https://api.lancergroup.org"
+      });
+
+      if (!credentials.username) {
+        const alert = await this.alertController.create({
+          header: 'Desea añadir sus datos biometricos?',
+          message: 'Añadimos sus datos biometricos a esta cuenta, para iniciar sesión más ráido.',
+          buttons: [
+            {
+              text: "Cancelar",
+              role: "cancel",
+              handler: () => {
+
+              }
+            },
+            {
+              text: "Agregar",
+              role: "confirm",
+              handler: () => {
+                this.addBiometric()
+              }
+            }
+          ]
+        })
+        await alert.present();
+        return;
+      }
+    }
+    catch (error) {
+      const alert1 = await this.alertController.create({
+        header: 'ERROR Desea añadir sus datos biometricos?',
         message: 'Añadimos sus datos biometricos a esta cuenta, para iniciar sesión más ráido.',
-        buttons: ['Aceptar']
+        buttons: [
+          {
+            text: "Cancelar",
+            role: "cancel",
+            handler: () => {
+
+            }
+          },
+          {
+            text: "Agregar",
+            role: "confirm",
+            handler: () => {
+              this.addBiometric()
+            }
+          }
+        ]
       })
-      await alert.present();
-      this.addBiometric(credentials)
-      return;
-    } else {
-      const alert = await this.alertController.create({
-        header: 'BORRANDO datos biometricos...',
-        message: 'BORRAMOS sus datos biometricos.',
-        buttons: ['Aceptar']
-      })
-      await alert.present();
-      NativeBiometric.deleteCredentials({
-        server: "www.example.com",
-      }).then();
+      await alert1.present();
       return;
     }
 
   }
 
-    async getBiometric() {
-    return await NativeBiometric.getCredentials({
-      server: "https://api.lancergroup.org"
+  async borrar() {
+    NativeBiometric.deleteCredentials({
+      server: "https://api.lancergroup.org",
+    }).then(() => {
+      alert("SE HA BORRADO LA HUELLA")
     });
   }
 
-  async addBiometric(params: any = null) {
-
-    NativeBiometric.setCredentials({
-      username: params?.userEmail,
-      password: params?.userPassword,
-      server: "https://api.lancergroup.org",
-    }).then();
-  }
 
   logout() {
     this.storageService.remove("session");

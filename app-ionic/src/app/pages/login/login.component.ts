@@ -27,16 +27,6 @@ export class LoginComponent {
     });
 
   }
-  
-
-  async addBiometric(params: any = null) {
-
-    NativeBiometric.setCredentials({
-      username: "endomamoru@inazumaeleven.com",
-      password: "wilson0102",
-      server: "https://api.lancergroup.org",
-    }).then();
-  }
 
   async biometricVerification() {
     const result = await NativeBiometric.isAvailable();
@@ -50,54 +40,60 @@ export class LoginComponent {
     })
       .then(() => true)
       .catch(() => false);
-    if (!verified) return;
+    if (!verified) {
+      alert("La verificacion ha fallado")
+      return;
+    }
 
     const credentials = await NativeBiometric.getCredentials({
       server: "https://api.lancergroup.org",
     });
+    
     alert(JSON.stringify(credentials))
-    alert("funciona")
-    this.onLogin(credentials)
+    this.formLogin.get("userEmail")?.setValue(credentials.username);
+    this.formLogin.get("userPassword")?.setValue(credentials.password);
+    this.onLogin()
   }
 
+
   async onLogin(params: any = null) {
-    let params2 =  params ?? this.formLogin.value
+    let params2 =  params || this.formLogin.value
     if (this.formLogin.valid || params2?.valid) {
-      this.authenticationService.login(params2).subscribe({
-        next: this.response.bind(this, params2),
-        error: this.catchError.bind(this)
-      });
+      // this.authenticationService.login(params2).subscribe({
+      //   next: this.response.bind(this, params2),
+      //   error: this.catchError.bind(this)
+      // });
+      this.response(this, params2)
     }
   }
 
 
   async response(res: any, params: any) {
-    if (params.code == 1) {
-      this.storageService.set("session", params).then(() => {
-        this.addBiometric(params)
+    // if (params.code == 1) {
+      await this.storageService.set("credentials", params)
+      // await this.storageService.set("credentials")
         this.router.navigate(["/user"])
-      });
-    }
+   // }
 
-    else if (params.code == 2) {
-      const alert = await this.alertController.create({
-        header: 'Datos incorrectos:',
-        message: 'Correo o contraseña son incorrectos.',
-        buttons: ['Aceptar']
-      })
-      await alert.present();
-      return;
-    }
+    // else if (params.code == 2) {
+    //   const alert = await this.alertController.create({
+    //     header: 'Datos incorrectos:',
+    //     message: 'Correo o contraseña son incorrectos.',
+    //     buttons: ['Aceptar']
+    //   })
+    //   await alert.present();
+    //   return;
+    // }
 
-    else if (params.code == 3) {
-      const alert = await this.alertController.create({
-        header: 'Ingrese bien sus datos:',
-        message: 'El usuario no existe.',
-        buttons: ['Aceptar']
-      })
-      await alert.present();
-      return;
-    }
+    // else if (params.code == 3) {
+    //   const alert = await this.alertController.create({
+    //     header: 'Ingrese bien sus datos:',
+    //     message: 'El usuario no existe.',
+    //     buttons: ['Aceptar']
+    //   })
+    //   await alert.present();
+    //   return;
+    // }
 
   }
 

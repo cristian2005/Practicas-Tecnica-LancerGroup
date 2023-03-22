@@ -17,14 +17,15 @@
                 </ion-col>
             </ion-row>
 
-            <ion-row>
+            <!-- <ion-row>
                 <ion-col size="12" class="userFinger">
                     <ion-avatar>
                     <ion-icon name="finger-print-outline" class="fingericon" (click)="addBiometric()"></ion-icon>
                     <p class="biometric-text" (click)="addBiometric()">Añade tus datos biométricos</p>
                     </ion-avatar>
+                    <ion-button (click)="addBiometric()">ADD HUELLA</ion-button>
                 </ion-col>
-            </ion-row>
+            </ion-row> -->
 
             <ion-row>
                 <ion-col size="12">
@@ -56,4 +57,5 @@
         </ion-grid>
     </div>
     <ion-button expand="block" class="ion-padding" color="danger" (click)="logout()">Cerrar sesión</ion-button>
+    <ion-button (click)="borrar()">BORRAR HUELLA</ion-button>
 </ion-content>

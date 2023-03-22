@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   
   { 
-    path: "user", component: UserComponent, canActivate: [GuardGuard]
+    path: "user", component: UserComponent //, canActivate: [GuardGuard]
   },
 
   { 

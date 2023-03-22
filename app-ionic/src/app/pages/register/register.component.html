@@ -36,8 +36,9 @@
             <ion-label position="floating">Confirmar contraseña</ion-label>
             <ion-input type="password" formControlName="confirmPassword" minLenght="8" maxlength="16"></ion-input>
         </ion-item>
-        <div class="ion-padding">
-            <p>{{location?.latitud}} {{location?.longitud}}</p>
+        <div class="ion-padding" *ngIf="location">
+            <p><strong>Latitud: </strong> {{location?.latitud}}</p>
+            <p><strong>Longitud: </strong> {{location?.longitud}}</p>
         </div>
         <ion-button expand="block" class="ion-padding" color="tertiary" routerLink="/register/geolocation">Añadir
             ubicación y foto</ion-button>
