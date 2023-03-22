@@ -1,0 +1,50 @@
+<ion-content class="ion-paddding">
+
+    <div class="ion-text-center">
+        <h1>Registro</h1>
+        <p>Ingrese sus datos a continuación para poder
+            validar el registro.
+        </p>
+    </div>
+    <form [formGroup]="formRegister">
+        <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input type="text" formControlName="userName" maxlength="30"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input type="text" formControlName="userLastName" maxlength="30"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" formControlName="userEmail"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input type="tel" formControlName="userPhoneNumber" maxlength="10"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" formControlName="userPassword" minLenght="8" maxlength="16"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Confirmar contraseña</ion-label>
+            <ion-input type="password" formControlName="confirmPassword" minLenght="8" maxlength="16"></ion-input>
+        </ion-item>
+        <div class="ion-padding" *ngIf="location">
+            <p><strong>Latitud: </strong> {{location?.latitud}}</p>
+            <p><strong>Longitud: </strong> {{location?.longitud}}</p>
+        </div>
+        <ion-button expand="block" class="ion-padding" color="tertiary" routerLink="/register/geolocation">Añadir
+            ubicación y foto</ion-button>
+        <ion-button expand="block" class="ion-padding" color="tertiary" (click)="onRegister()">Registrarse</ion-button>
+        <ion-button expand="block" class="ion-padding" routerLink="/login">¿Tienes una cuenta? Inicia
+            sesión</ion-button>
+    </form>
+
+</ion-content>

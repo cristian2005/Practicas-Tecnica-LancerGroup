@@ -1,0 +1,32 @@
+<ion-content class="ion-padding">
+
+    <div class="ion-text-center">
+        <h1>Iniciar Sesión</h1>
+        <p>Introduzca su correo electrónico y contraseña
+            para iniciar sesión:
+        </p>
+    </div>
+    <div class="form">
+        <form [formGroup]="formLogin">
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input type="email" formControlName="userEmail"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="password" minLenght="8" maxlength="16" formControlName="userPassword"></ion-input>
+            </ion-item>
+
+            <ion-button expand="block" class="ion-padding" color="tertiary" (click)="onLogin()">Iniciar
+                sesión</ion-button>
+            <ion-button expand="block" class="ion-padding" routerLink="/register">¿No tienes una cuenta?
+                Registrate</ion-button>
+                <ion-avatar>
+                    <ion-icon name="finger-print-outline" (click)="biometricVerification()"></ion-icon>
+                </ion-avatar>
+                <ion-button>PRUEBA9</ion-button>
+        </form>
+    </div>
+
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-title>
+            Seleccione una imagen
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-avatar class="userimg">
+        <ion-icon class="userimg" name="person-circle-outline"></ion-icon>
+    </ion-avatar>
+    <ion-item>
+        <ion-input type="file" accept=".png, .jpg, .jpeg, .webp" (change)="onFileSelected($event)"></ion-input>
+        <div class="upload-button">
+            <ion-icon class="uploadlog" name="cloud-upload-outline"></ion-icon>
+            <span>Subir archivo</span>
+        </div>
+        <div class="file-name">{{fileName}}</div>
+    </ion-item>
+
+</ion-content>

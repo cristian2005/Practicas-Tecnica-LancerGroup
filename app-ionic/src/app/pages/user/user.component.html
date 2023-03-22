@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-title>
+            Información del usuario
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="container-main">
+        <ion-grid class="ion-padding">
+            <ion-row>
+                <ion-col size="12" class="userPic">
+                    <ion-avatar>
+                        <ion-img [src]="user?.image"></ion-img>
+                    </ion-avatar>
+                </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+                <ion-col size="12" class="userFinger">
+                    <ion-avatar>
+                    <ion-icon name="finger-print-outline" class="fingericon" (click)="addBiometric()"></ion-icon>
+                    <p class="biometric-text" (click)="addBiometric()">Añade tus datos biométricos</p>
+                    </ion-avatar>
+                    <ion-button (click)="addBiometric()">ADD HUELLA</ion-button>
+                </ion-col>
+            </ion-row> -->
+
+            <ion-row>
+                <ion-col size="12">
+                    <div class="icons-texts">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <h3>NOMBRE</h3>
+                    </div>
+                    <p>{{user?.custumerName}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <div class="icons-texts">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <h3>EMAIL</h3>
+                    </div>
+                    <p>{{user?.userEmail}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <div class="icons-texts">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <h3>NUMERO DE TELÉFONO</h3>
+                    </div>
+                    <p>{{user?.phoneNumber}}</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <ion-button expand="block" class="ion-padding" color="danger" (click)="logout()">Cerrar sesión</ion-button>
+    <ion-button (click)="borrar()">BORRAR HUELLA</ion-button>
+</ion-content>
